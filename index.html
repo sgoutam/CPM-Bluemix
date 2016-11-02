@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Big Picture - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+   // <link href="css/the-big-picture.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        
+    function sc()
+    {
+
+         var i,j,k,m,p,count,w,t;
+         var e=[];
+         var l=[];
+         var f=[];
+         var a=[[0,5,6,0,0,0],[0,0,3,18,0,0],[0,0,0,0,2,11],[0,0,0,0,0,10],[0,0,0,0,0,12],[0,0,0,0,0,0]];
+        // var a[10][10],e[10],l[10],w,t;
+        // printf("Enter the no. of nodes:");
+         //scanf("%d",&n);
+        // printf("\nEnter network diagram and -1 to exit:");
+        // for(i=0;i<n;i++)
+          //for(j=0;j<n;j++)
+            //cin>>a[i][j];
+            var n=6;
+         e[0]=0;
+         for(k=1;k<n;k++)
+            {
+              count=0;
+              for(i=0;i<n;i++)
+              {
+                if(a[i][k]!=0)
+                {
+                 count++;
+                 m=i;
+                }
+              }
+              if(count==1)
+                e[k]=e[m]+a[m][k];
+               else
+                {
+                  e[k]=0;
+                  for(i=0;i<n;i++)
+                    {
+                     if(a[i][k]!=0)
+                     {
+                      t=e[i]+a[i][k];
+                      if(t>e[k])
+                        e[k]=t;
+                     }
+                    }
+                  }
+        }
+ //for(i=0;i<n;i++)
+  //printf("  %f",e[i]);
+             var p=e[n-1];
+             l[n-1]=p;
+             for(k=n-2;k>=0;k--)
+             {
+              count=0;
+              for(j=0;j<n;j++)
+              {
+                if(a[k][j]!=0)
+                {
+                 count++;
+                 p=j;
+                }
+              }
+              if(count==1)
+                l[k]=l[p]-a[k][p];
+              else
+              {
+                l[k]=1000;
+                for(j=0;j<n;j++)
+                {
+                 if(a[k][j]!=0)
+                 {
+                  t=l[j]-a[k][j];
+                  if(t<l[k])
+                    l[k]=t;
+                 }
+                }
+              }
+             }
+
+                  //int path=0;
+                 for(i=0,k=0;i<n;i++)
+                 {
+                  if(e[i]==l[i])
+                    {
+                    f[k++]=i;
+                    //path+=e[i];
+                    }
+                 }
+                 //cout<<l[n-1]<<endl;
+                 //printf("\nThe critical path is: 0");
+                 //printf("->%d",f[i]);
+                 document.writeln("Critical path" + "<br>");
+                 document.writeln("Value = "+ l[n-1] + "<br>");
+                 for(i=0;i<f.length;i++)
+                {
+                    if(i!=f.length-1)
+                    {
+                     var s=s+f[i]+"-->";
+                     document.writeln(f[i]+"-->");
+                    }
+                    else
+                     document.write(f[i]);
+                }
+    }
+
+    </script>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h1>Critical Path Method</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12"> 
+                <img src="js.png">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="button" name="b1" value="find cp" onclick=sc()>
+        <div class="col-md-2" id></dir>
+        <p id="res1"></p> <p id="res2"></p> <p id="res3"></p>
+    </div>
+
+
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
